@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Список объектов{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Список объектов</h1>
+  {% if flats %}
+      <div class="vstack gap-3 my-4 justify-content-center align-items-center" >
+          {% for flat in flats %}
+              <div class="card"  style="width:50%">
+                  <div class="row p-3">
+                      <div class="col-md-10 card-body">
+                          <h3 class="card-title"><a href="{% url 'detail_flat' pk=flat.id %}">
+                          {{ flat.type}}</a></h3>
+                      <div class="card-text mb-2">{{ flat.description }}</div>
+                          <p class="card-text fw-bold">{{ flat.price }}</p>
+                          <p class="card-text text-end fst-italic">
+                          {{ flat.created_at }}</p>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+
+  {% if houses %}
+      <div class="vstack gap-3 my-4 justify-content-center align-items-center" >
+          {% for house in houses %}
+              <div class="card"  style="width:50%">
+                  <div class="row p-3">
+                      <div class="col-md-10 card-body">
+                          <h3 class="card-title"><a href="{% url 'detail_house' pk=house.id %}">
+                          {{ house.type}}</a></h3>
+                      <div class="card-text mb-2">{{ house.description }}</div>
+                          <p class="card-text fw-bold">{{ house.price }}</p>
+                          <p class="card-text text-end fst-italic">
+                          {{ house.created_at }}</p>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'register' %}">Sign Up</a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Обновить проект{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Обновить проект</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Обновить</button>
+  </form>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

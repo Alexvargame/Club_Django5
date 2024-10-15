@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Описание проекта{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Проект - {{project.name}}, автора {{project.author}}</h1>
+  <strong>Роль автора: {{project.auhtor_role}}</strong></br>
+  <strong>Категории</strong>:
+  {% for category in project.categories.all%}
+  <strong>{{category}}</strong>
+  {%endfor%}</br>
+  <strong>Стеки:</strong>
+  {% for stack in project.stacks.all%}
+  <strong>{{stack}}</strong>
+  {%endfor%}</br>
+  <strong>Статус: {{project.status}}</strong></br>
+    <strong>Создан: {{project.created_at}}</strong>
+  <strong>Дата завершения: {{project.deadline}}</strong>
+  {% if project.closed_at %} <strong>Дата закрытия: {{project.status}}</strong>{%endif%}</br>
+    <p>{{project.description}}</p>
+    <hr>
+    <p> <a href="'{{project.repo_link}}">Репозиторий проекта</a></p>
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}
+<!--{% url 'project-detail' project.pk %}-->

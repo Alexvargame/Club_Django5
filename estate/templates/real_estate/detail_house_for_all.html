@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} Дом № {{obj.id_object}}{% endblock %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <h1>Объявление</h1>
+  {% for key, value in house.items %}
+    <li>
+      {{key}}: {{value}}
+    </li>
+  {%endfor%}
+
+<form method="post" style="width:50%">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% bootstrap_button 'Добавить' %}
+</form>
+{% if comments %}
+<div class="vstack gap-3 mt-5">
+    {% for comment in comments %}
+        <div class="p-2 border" style="width:50%">
+            <h5>{{ comment.author }}</h5>
+            <p>{{ comment.content }}</p>
+            <p class="text-end fst-italic">{{ comment.created_at }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
+
+

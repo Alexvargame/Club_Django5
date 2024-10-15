@@ -1,0 +1,35 @@
+version: '3.8'
+
+x-pg_settings: &pg_settings
+  POSTGRES_DB: club_db
+  POSTGRES_USER: club_user
+  POSTGRES_PASSWORD: club_password
+
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment: *pg_settings
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    tty: true
+    command: bash entrypoint.dev.sh
+    volumes:
+      - .:/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      <<: *pg_settings
+      DJANGO_DEBUG: '1'
+      DJANGO_SECRET_KEY: 'dev_secret_key'
+      DJANGO_ALLOWED_HOSTS: 'localhost'
+
+volumes:
+  postgres_data:

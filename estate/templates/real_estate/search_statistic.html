@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Статистика поисковых запросов{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Наиболее частые запросы</h1>
+  <form method="get" >
+ <!--   {% csrf_token %}-->
+      {{form.date_at}}:{{form.date_to}}
+      {{form.type_flat}} {{form.type_house}}
+      <button type="submit">Искать</button>
+  </form>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'register' %}">Sign Up</a>
+{% endif %}
+    <table>
+            <tr>
+                 <th style="width:5%">I</th>
+                 <th style="width:10%">Город</th>
+                 <th style="width:10%">Район</th>
+                 <th style="width:10%">Улица</th>
+                 <th style="width:5%">Этаж/этажн</th>
+                 <th style="width:5%">Ком-т</th>
+                 <th style="width:5%">Площадь</th>
+                 <th style="width:5%">Цена</th>
+                 <th style="width:30%">Инфо</th>
+                 <th style="width:10%">Дата создания</th>
+            </tr>
+        {% for flat in flats%}
+            <tr>
+                 <td><a href="{{flat.get_absolute_url}}">{{flat.id_object}}</a></td>
+                 <td>{{flat.city}}</td>
+                 <td>{{flat.district}}</td>
+                 <td>{{flat.street}}</td>
+                 <td>{{flat.floor}}/{{flat.floors}}</td>
+                 <td>{{flat.rooms}}</td>
+                 <td>{{flat.square}}</td>
+                 <td>{{flat.price}}</td>
+                 <td>{{flat.description}}</td>
+                 <td>{{flat.created_at}}</td>
+
+            </tr>
+        {% endfor %}
+
+        <a href="">
+
+        </table>
+{% endblock %}

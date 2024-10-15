@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить проект{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <h1>Добавить проект</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div id="formfield">
+        {{ form.as_p }}
+{#        <label>Вакансия</label>#}
+{#        <input type="text" name="text" class="text" size="50" placeholder="Stack">#}
+{#        <input type="text" name="text" class="text" size="50" placeholder="Grade">#}
+      </div>
+      <input name="submit" type="Submit" value="Submit">
+    </form>
+{#    <div class="controls">#}
+{#      <button class="add" onclick="add()"><i class="fa fa-plus"></i>Add</button>#}
+{#      <button class="remove" onclick="remove()"><i class="fa fa-minus"></i>Remove</button>#}
+{#    </div>#}
+{#    <input name="test">#}
+{#    <button type="submit">Добавить</button>#}
+
+  {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
+  {% endif %}
+
+  <script src="/static/js/form.js"></script>
+{% endblock %}

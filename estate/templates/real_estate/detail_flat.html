@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Квартира № {{obj.id_object}}{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Детали</h1>
+    {% for key, value in flat.items %}
+      <li>
+        {{key}}: {{value}}
+      </li>
+    {%endfor%}
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'register' %}">Sign Up</a>
+{% endif %}
+
+</br>
+<li>
+        <a class="btn btn-light" href="{% url 'update_flat' pk=flat.id%}">Edit</a>
+		<a class="btn btn-danger" href="{% url 'delete_flat' pk=flat.id%}">Del</a>
+		<a class="btn btn-light" href="{% url 'list_user_real_estates'%}">List</a>
+</li>
+{% endblock %}
