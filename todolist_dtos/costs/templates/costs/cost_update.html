@@ -1,6 +1,5 @@
 ﻿{% extends 'costs/base_costs.html'%}
-{% load rest_framework %}
- 
+
 	<h1>HI</h1>
  
 {% block title %}
@@ -29,7 +28,7 @@
 	</style>
 	<form action="{{cost_update.get_update_url}}" method='post'>
 		{% csrf_token %}
-	 {%render_form serializer%}
+	 {{form}}
 	<div class="form-group">
 <button type="submit" class="btn btn-primary">Сохранить</button>
 	

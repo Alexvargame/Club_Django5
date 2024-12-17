@@ -23,6 +23,7 @@ class DayPlanRepository:
         dayplan.save()
 
     def update_object(self, dto):
+
         dayplan = self.model.objects.update_or_create(
             user=dto.user,
             day_date=dto.day_date,

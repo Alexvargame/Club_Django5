@@ -12,4 +12,5 @@ class CategoryCostView(LoginRequiredMixin, View):
         context = {
             'categorycosts': CategoryCostService(CategoryCostRepository()).list_objects()
         }
+        print(context)
         return render(request, 'costs/category_cost_list.html', context=context)

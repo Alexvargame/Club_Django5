@@ -13,3 +13,12 @@ class Cost(models.Model):
     class Meta:
         verbose_name = "Расход"
         verbose_name_plural = "Расходы"
+
+    def get_absolute_url(self):
+        return reverse('cost_detail_url', kwargs={'pk': self.id})
+
+    def get_update_url(self):
+        return reverse('cost_update_url', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('cost_delete_url', kwargs={'pk': self.id})

@@ -39,13 +39,13 @@
 	   <ul class="dropdown-menu">
     		<li><a class="dropdown-item" href="">Выбрать день</a></li>
 			<div class="dropdown-divider"></div>
-				<li><a class="dropdown-item" href="">Категории</a></li>
+				<li><a class="dropdown-item" href="{% url 'category_costs_list_url'%}">Категории</a></li>
 			<div class="dropdown-divider"></div>
 				<li style="font-size:100%;"><b>Расходы</b></li>
 			<div class="dropdown-divider"></div>
-				<li><a class="dropdown-item" href="">Все расходы</a></li>
-				<li><a class="dropdown-item" href="">Добавить расход</a></li>
-			    <li><a class="dropdown-item" href="">Добавить расходы</a></li>
+				<li><a class="dropdown-item" href="{% url 'costs_list_url'%}">Все расходы</a></li>
+				<li><a class="dropdown-item" href="{% url 'cost_create_url'%}">Добавить расход</a></li>
+			    <li><a class="dropdown-item" href="{% url 'cost_many_create_url'%}">Добавить расходы</a></li>
 			<div class="dropdown-divider"></div>
 				<li style="font-size:100%;"><b>Отчеты</b></li>
 			<div class="dropdown-divider"></div>
@@ -73,13 +73,14 @@
   	  </ul>
 	</li>
 
-	{% if user.is_authenticated %}
-            	<a class="nav-item nav-link" href="">Профиль</a>
-            	<a class="nav-item nav-link" href="">Выход</a>
+			{% if user.is_authenticated %}
+            	<a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
+            	<a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
           	{% else %}
-            	<a class="nav-item nav-link" href="">Вход</a>
-            	<a class="nav-item nav-link" href="">Регистрация</a>
-          {% endif %}
+            	<a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
+            	<a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
+				{% endif %}
+
  
 
      </div>

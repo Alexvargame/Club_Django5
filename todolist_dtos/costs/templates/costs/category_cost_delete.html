@@ -10,10 +10,10 @@
 {% block content %}
 <div class="features">
 
-	<form action="{{categorycost_delete.get_delete_url}}" method='post'>
+	<form action="{% url 'category_cost_delete_url' pk=category_cost.id%}" method='post'>
 		{% csrf_token %}
-	<h3>Вы уверены, что хотите удалить объект?<b>"{{categorycost_delete.id}}"</b></h3>
-	<a href="{{categorycost_delete.get_absolute_url}}">Отменить</a>
+	<h3>Вы уверены, что хотите удалить объект?<b>"{{category_cost.id}}"</b></h3>
+	<a href="{% url 'category_cost_detail_url' pk=category_cost.id%}">Отменить</a>
 	<button type="submit" class="btn btn-danger">Удалить</button>
 	</form>
 	

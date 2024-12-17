@@ -33,9 +33,9 @@
 <div class="obj-panel">
 	<p>Выбрать</p>
 	 {% block obj-panel%}
-		<a class="btn btn-light" href="{{cost.get_update_url}}">Редактировать</a>
-		<a class="btn btn-danger" href="{{cost.get_delete_url}}">Del</a>
-		<a class="btn btn-light" href="{%url 'costs_front_list_url'%}">Вернуться к списку</a>
+		<a class="btn btn-light" href="{% url 'cost_update_url' pk=cost.id%}">Редактировать</a>
+		<a class="btn btn-danger" href="{% url 'cost_delete_url' pk=cost.id%}">Del</a>
+		<a class="btn btn-light" href="{%url 'costs_list_url'%}">Вернуться к списку</a>
 	 {%endblock%}
 </div>
 {% endif%}

@@ -15,7 +15,7 @@
 		Пользователь-{{user}}
  	 </div>
 	 
-  	 {{categorycost.name}}
+  	 {{category_cost.name}}
 	
 	</div>
 {{s}}
@@ -27,9 +27,9 @@
 <div class="obj-panel">
 	<p>Выбрать</p>
 	 {% block obj-panel%}
-		<a class="btn btn-light" href="{{categorycost.get_update_url}}">Редктировать</a>
-		<a class="btn btn-danger" href="{{categorycost.get_delete_url}}">Del</a>
-		<a class="btn btn-light" href="{% url 'category_cost_front_list_url'%}">Вернуться к списку</a>
+		<a class="btn btn-light" href="{% url 'category_cost_update_url' pk=category_cost.id%}">Редктировать</a>
+		<a class="btn btn-danger" href="{% url 'category_cost_delete_url' pk=category_cost.id%}">Del</a>
+		<a class="btn btn-light" href="{% url 'category_costs_list_url'%}">Вернуться к списку</a>
 	 {%endblock%}
 	</div>
 {% endif%}

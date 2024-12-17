@@ -11,3 +11,7 @@ class CategoryCost(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('category_cost_detail_url', kwargs={'pk': self.id})
+
