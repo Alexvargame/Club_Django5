@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Статьи категории {{ category.name }}{% endblock %}
+
+{% block content %}
+<div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
+    <!-- Список категорий -->
+    <div class="md:w-1/4 bg-service-card p-4 rounded-lg shadow-lg mb-4 md:mb-0">
+        <h2 class="text-2xl font-bold text-center text-gray-300 mb-4">Категории</h2>
+        <div class="space-y-4">
+            {% for category in categories %}
+            <div class="bg-service-card p-4 rounded-lg shadow-md text-center">
+                <a href="{% url 'category_articles' category.id %}" class="text-gray-300 font-medium">
+                  {{ category.name }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Список статей в категории -->
+    <div class="md:w-3/4 space-y-6">
+        <h1 class="text-3xl font-bold text-center text-gray-300 mb-4">Статьи категории: {{ category.name }}</h1>
+        {% for article in page_obj %}
+        <div class="bg-service-card p-6 rounded-lg shadow-lg">
+            <div class="flex items-center space-x-4 mb-4">
+                <!-- Аватар автора -->
+                {% if article.author.avatar %}
+                <img src="{{ article.author.profile.avatar.url }}" alt="{{ article.author.username }}" class="w-12 h-12 rounded-full">
+                {% else %}
+                <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center">
+                    <i class="fas fa-user text-gray-500"></i>
+                </div>
+                {% endif %}
+                <div>
+                    <p class="text-gray-300 font-medium">{{ article.author.username }}</p>
+                    <p class="text-sm text-gray-500">{{ article.created_at|date:"d M Y" }}</p>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-300 mb-2">{{ article.title }}</h2>
+            <p class="text-gray-400 mb-4">{{ article.content|truncatewords:30 }}</p>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-500">Категория: {{ article.category.name }}</span>
+                <div class="flex space-x-2">
+                    {% for tag in article.tags.all|slice:":3" %}
+                    <span class="text-sm text-gray-500">#{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+                <!-- Кнопка для перехода на страницу статьи -->
+                <div class="mt-4">
+                    <a href="{% url 'article_detail' article.slug %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">
+                        Читать далее
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="bg-service-card p-6 rounded-lg shadow-lg text-center">
+            <p class="text-gray-400">В этой категории пока нет статей.</p>
+        </div>
+        {% endfor %}
+        <!-- Пагинация -->
+        <div class="flex justify-center mt-8">
+            <nav class="flex space-x-2">
+                <!-- Кнопка "Первая" -->
+                {% if page_obj.number > 1 %}
+                <a href="?page=1" class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600">
+                    Первая
+                </a>
+                {% endif %}
+
+                <!-- Предыдущие 2 страницы -->
+                {% if page_obj.number > 3 %}
+                <span class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg">...</span>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                        {% if page_obj.number == num %}
+                        <span class="px-4 py-2 bg-gray-600 text-gray-300 rounded-lg">{{ num }}</span>
+                        {% else %}
+                        <a href="?page={{ num }}" class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600">
+                            {{ num }}
+                        </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Следующие 2 страницы -->
+                {% if page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
+                <span class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg">...</span>
+                {% endif %}
+
+                <!-- Кнопка "Последняя" -->
+                {% if page_obj.number < page_obj.paginator.num_pages %}
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600">
+                    Последняя
+                </a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}

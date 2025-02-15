@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полное описание услуги</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .bg-custom-dark {
+            background-color: rgb(24, 28, 49);
+        }
+        .bg-custom-light {
+            background-color: rgba(8, 33, 54, 1);
+        }
+        .bg-service-card {
+            background-color: rgb(24, 28, 49);
+        }
+        .bg-form {
+            background-color: rgb(24, 28, 49);
+        }
+        .bg-input {
+            background-color: rgba(24, 28, 49, 0.7); /* 30% светлее фона формы */
+        }
+        .bg-button {
+            background-color: rgba(60, 60, 80, 0.8);
+        }
+        body {
+            color: rgb(121, 128, 138);
+        }
+        .header-link:hover, .service-card-button:hover, .main-button:hover, .form-button:hover {
+            background-color: rgba(24, 28, 49, 0.5);
+        }
+        .service-card-button, .main-button, .form-button {
+            display: block;
+            margin: 0 auto;
+            color: rgb(121, 128, 138);
+        }
+        .service-card-text {
+            text-align: center;
+        }
+        .large-text {
+            font-size: 2.5rem;
+        }
+        .full-width {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-custom-light">
+    <!-- Header -->
+    <header class="bg-custom-dark p-4 w-full">
+        <div class="max-w-screen-xl mx-auto flex justify-center space-x-4">
+            <a href="#" class="px-3 py-2 rounded-md font-medium header-link">Главная</a>
+            <a href="#" class="px-3 py-2 rounded-md font-medium header-link">Услуги</a>
+            <a href="#" class="px-3 py-2 rounded-md font-medium header-link">О нас</a>
+            <a href="#" class="px-3 py-2 rounded-md font-medium header-link">Контакты</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-screen-xl mx-auto p-4">
+        <!-- Service Description -->
+        <section class="my-8">
+            <h1 class="text-4xl font-bold mb-4 text-center">Название услуги</h1>
+            <p class="mb-4">Тут подробное описание услуги. Опишите, что включает в себя услуга, какие преимущества она предоставляет, и любую другую важную информацию, которую клиент должен знать.</p>
+        </section>
+
+        <!-- Registration Form -->
+        <section class="my-8">
+            <form class="max-w-md mx-auto bg-form p-6 rounded-md shadow-md">
+                <div class="mb-4">
+                    <label class="block text-gray-300 text-sm font-bold mb-2" for="name">
+                        Имя
+                    </label>
+                    <input class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Ваше имя">
+                </div>
+                <div class="mb-4 flex space-x-4">
+                    <div class="w-1/2">
+                        <label class="block text-gray-300 text-sm font-bold mb-2" for="email">
+                            Email
+                        </label>
+                        <input class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Ваш Email">
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-gray-300 text-sm font-bold mb-2" for="telegram">
+                            Телеграмм
+                        </label>
+                        <input class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="telegram" type="text" placeholder="Ваш Telegram">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-300 text-sm font-bold mb-2" for="message">
+                        Сообщение
+                    </label>
+                    <textarea class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="message" placeholder="Ваше сообщение"></textarea>
+                </div>
+                <div class="mb-4">
+                    <input class="mr-2 leading-tight" type="checkbox" id="agree_offer">
+                    <label class="text-gray-300 text-sm" for="agree_offer">
+                        С условиями оферты согласен
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <input class="mr-2 leading-tight" type="checkbox" id="agree_privacy">
+                    <label class="text-gray-300 text-sm" for="agree_privacy">
+                        Я даю согласие на обработку персональных данных и согласие на обработку персональных... <a href="privacy_policy.html" class="text-blue-300">Подробнее</a>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="bg-button text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-button" type="submit">
+                        Записаться
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-custom-dark p-4 w-full">
+        <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div class="mb-4 md:mb-0">
+                <p class="mb-4 text-gray-300">Тут текст</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 font-medium">Оферта</a>
+                    <a href="#" class="text-gray-300 font-medium">Политика обработки персональных данных</a>
+                </div>
+            </div>
+            <div class="flex flex-col space-y-2">
+                <a href="#" class="px-3 py-2 rounded-md font-medium header-link">Главная</a>
+                <a href="#" class="px-3 py-2 rounded-md font-medium header-link">Услуги</a>
+                <a href="#" class="px-3 py-2 rounded-md font-medium header-link">О нас</a>
+                <a href="#" class="px-3 py-2 rounded-md font-medium header-link">Контакты</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

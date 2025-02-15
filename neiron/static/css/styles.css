@@ -1,0 +1,39 @@
+/* static/css/styles.css */
+.bg-custom-dark {
+    background-color: rgb(24, 28, 49);
+}
+.bg-custom-light {
+    background-color: rgba(8, 33, 54, 1);
+}
+.bg-service-card {
+    background-color: rgb(24, 28, 49);
+}
+.bg-form {
+    background-color: rgb(24, 28, 49);
+}
+.bg-input {
+    background-color: rgba(24, 28, 49, 0.7); /* 30% светлее фона формы */
+}
+.bg-button {
+    background-color: rgba(60, 60, 80, 0.8);
+}
+body {
+    color: rgb(121, 128, 138);
+}
+.header-link:hover, .service-card-button:hover, .main-button:hover, .form-button:hover {
+    background-color: rgba(24, 28, 49, 0.5);
+}
+.service-card-button, .main-button, .form-button {
+    display: block;
+    margin: 0 auto;
+    color: rgb(121, 128, 138);
+}
+.service-card-text {
+    text-align: center;
+}
+.large-text {
+    font-size: 2.5rem;
+}
+.full-width {
+    width: 100%;
+}

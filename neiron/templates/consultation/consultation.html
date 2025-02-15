@@ -1,0 +1,48 @@
+<!-- consultation.html -->
+{% extends 'base.html' %}
+
+{% block title %}Консультация - Менторские услуги{% endblock %}
+
+{% block content %}
+    <!-- Service Description -->
+    <section class="my-8">
+        <h1 class="text-4xl font-bold mb-4 text-center">{{ service.name }}</h1>
+        <p class="mb-4">{{ service.description }}</p>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="my-8">
+        <form method="post" class="max-w-md mx-auto bg-form p-6 rounded-md shadow-md">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-bold mb-2" for="name">Имя</label>
+                <input class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" name="name" placeholder="Ваше имя">
+            </div>
+            <div class="mb-4 flex space-x-4">
+                <div class="w-1/2">
+                    <label class="block text-gray-300 text-sm font-bold mb-2" for="email">Email</label>
+                    <input class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" placeholder="Ваш Email">
+                </div>
+                <div class="w-1/2">
+                    <label class="block text-gray-300 text-sm font-bold mb-2" for="telegram">Telegram</label>
+                    <input class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="telegram" type="text" name="telegram" placeholder="Ваш Telegram">
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-bold mb-2" for="message">Сообщение</label>
+                <textarea class="bg-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" id="message" name="message" placeholder="Ваше сообщение"></textarea>
+            </div>
+            <div class="mb-4">
+                <input class="mr-2 leading-tight" type="checkbox" id="agree_offer" required>
+                <label class="text-gray-300 text-sm" for="agree_offer">С условиями оферты согласен</label>
+            </div>
+            <div class="mb-4">
+                <input class="mr-2 leading-tight" type="checkbox" id="agree_privacy" required>
+                <label class="text-gray-300 text-sm" for="agree_privacy">Я даю согласие на обработку персональных данных</label>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-button text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-button" type="submit">Записаться</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
