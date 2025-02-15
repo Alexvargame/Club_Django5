@@ -16,6 +16,10 @@ from costs.controllers.costs import (
     create_many_cost,
 )
 
+from costs.controllers.day_cost import (
+    day_cost_detail,
+    day_costs_list,
+)
 urlpatterns =[
     path('category_costs/', category_costs.CategoryCostView.as_view(), name='category_costs_list_url'),
     path('category_costs/create/',create_category_cost.CategoryCostCreateView.as_view(),
@@ -34,5 +38,8 @@ urlpatterns =[
     path('costs/<int:pk>/update/', update_cost.CostUpdateView.as_view(), name='cost_update_url'),
     path('costs/<int:pk>/delete/',delete_cost.CostDeleteview.as_view(), name='cost_delete_url'),
 
+    path('day_cost/<int:year>/<int:month>/<int:day>/<str:user>/',
+         day_cost_detail.DayCostDetailView.as_view(), name='day_cost_detail_url'),
+    path('day_costs/', day_costs_list.DayCostsListView.as_view(), name='day_costs_list_url'),
 
 ]

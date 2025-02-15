@@ -22,3 +22,6 @@ class Cost(models.Model):
 
     def get_delete_url(self):
         return reverse('cost_delete_url', kwargs={'pk': self.id})
+
+    def __str__(self):
+        return f'{self.cost_name}: {self.cost_sum}'

@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 
 from costs.repository import CostRepository
 from costs.cost_service import CostService
-
 from costs.dtos.request.cost_create_dto import CostCreateDTO
 from costs.forms import CostCreateForm
 
+from todolist_dtos.models.day_cost import DayCost
+from todolist_dtos.models.cost import Cost
 class CostCreateView(LoginRequiredMixin, View):
 
     def get(self, request):
@@ -28,8 +29,20 @@ class CostCreateView(LoginRequiredMixin, View):
                 **b_form.cleaned_data
             )
             CostService(CostRepository()).create_object(dto)
+
             user.profile.balance -= dto.cost_sum
             user.profile.save()
+            cost_date = b_form['cost_date'].value()
+            if DayCost.objects.filter(day_date=cost_date).exists():
+                day = DayCost.objects.get(day_date=cost_date)
+                cost_d = Cost.objects.filter(cost_date=cost_date, user=user)
+                day.costs.set(cost_d)
+                day.save()
+            else:
+                day = DayCost.objects.create(user=request.user.username, day_date=cost_date)
+                cost_d = Cost.objects.filter(cost_date=cost_date, user=user)
+                day.costs.set(cost_d)
+                day.save()
             return redirect('costs_list_url')
         context = {
             'form': b_form,
